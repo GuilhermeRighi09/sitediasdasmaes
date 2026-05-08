@@ -1,3 +1,4 @@
+// Configurações do Álbum
 const listaFrases = [
     "Primeiro último dia de aula",
     "A arte no parque Van Gogh",
@@ -21,8 +22,31 @@ const fraseEl = document.getElementById('frase');
 const imagemEl = document.getElementById('imagem');
 const barraEl = document.getElementById('barra-progresso');
 
+// --- CONTROLE DE MÚSICA VIA JS ---
+const musica = new Audio('som.mp3');
+musica.loop = true;
+
+const musicBtn = document.getElementById('music-control');
+const musicIcon = document.getElementById('music-icon');
+const musicText = document.querySelector('.music-text');
+
+musicBtn.addEventListener('click', () => {
+    if (musica.paused) {
+        musica.play();
+        musicIcon.textContent = "⏸️";
+        musicText.textContent = "Pausar";
+        musicBtn.classList.add('tocando');
+    } else {
+        musica.pause();
+        musicIcon.textContent = "🎵";
+        musicText.textContent = "Tocar Música";
+        musicBtn.classList.remove('tocando');
+    }
+});
+
+// --- LÓGICA DO ÁLBUM ---
 function atualizarPagina() {
-  
+    // Efeito de transição
     fraseEl.style.opacity = 0;
     fraseEl.style.transform = "translateY(20px)";
     imagemEl.style.filter = "blur(10px) brightness(0.7)";
@@ -31,11 +55,11 @@ function atualizarPagina() {
         fraseEl.textContent = listaFrases[indiceAtual];
         imagemEl.src = listaImagens[indiceAtual];
         
-        
+        // Atualiza Barra de Progresso
         const progresso = ((indiceAtual + 1) / listaFrases.length) * 100;
         barraEl.style.width = `${progresso}%`;
 
-        
+        // Volta os elementos
         fraseEl.style.opacity = 1;
         fraseEl.style.transform = "translateY(0)";
         imagemEl.style.filter = "blur(0) brightness(1)";
@@ -47,5 +71,8 @@ function proximaFoto() {
     atualizarPagina();
 }
 
+// Evento de clique na imagem
+document.querySelector('.moldura-interativa').addEventListener('click', proximaFoto);
 
+// Iniciar página
 window.onload = atualizarPagina;

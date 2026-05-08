@@ -1,3 +1,4 @@
+/* --- CONFIGURAÇÕES GERAIS --- */
 :root {
     --primary: #ff758c;
     --secondary: #ff7eb3;
@@ -5,7 +6,12 @@
     --glass: rgba(255, 255, 255, 0.7);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    scroll-behavior: smooth; 
+}
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -14,7 +20,7 @@ body {
     background-color: #fce4ec;
 }
 
-
+/* --- FUNDO ANIMADO (BLOBS) --- */
 .background-blobs {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -32,14 +38,61 @@ body {
     animation: move 20s infinite alternate;
 }
 
-.blob-2 { background: #a18cd1; right: -100px; bottom: -100px; animation-delay: -5s; }
+.blob-2 { 
+    background: #a18cd1; 
+    right: -100px; 
+    bottom: -100px; 
+    animation-delay: -5s; 
+}
 
 @keyframes move {
     from { transform: translate(-10%, -10%) rotate(0deg); }
     to { transform: translate(20%, 20%) rotate(360deg); }
 }
 
+/* --- BOTÃO DE MÚSICA --- */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 117, 140, 0.3);
+    transition: all 0.3s ease;
+}
 
+.music-btn:hover {
+    transform: translateY(-3px);
+    background: white;
+}
+
+.music-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #d81b60;
+    text-transform: uppercase;
+}
+
+.tocando {
+    animation: pulseSmall 1s infinite;
+    border-color: #ff758c;
+}
+
+@keyframes pulseSmall {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* --- SEÇÃO INICIAL (HERO) --- */
 .hero {
     height: 100vh;
     display: flex;
@@ -52,75 +105,80 @@ body {
 
 .titulo-principal {
     font-family: 'Dancing Script', cursive;
-    font-size: clamp(3rem, 10vw, 5rem);
+    font-size: clamp(3rem, 10vw, 5.5rem);
     color: #d81b60;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.subtitulo { font-size: 1.2rem; font-weight: 300; margin-bottom: 30px; }
+.subtitulo { 
+    font-size: 1.2rem; 
+    font-weight: 300; 
+    margin-bottom: 40px; 
+}
 
 .btn-começar {
-    padding: 15px 40px;
+    padding: 18px 45px;
     background: var(--primary);
     color: white;
     text-decoration: none;
     border-radius: 50px;
-    font-weight: bold;
-    box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(255, 117, 140, 0.3);
     transition: 0.3s;
 }
 
+.btn-começar:hover { transform: scale(1.1); }
 
+/* --- ÁLBUM (GLASS CARD) --- */
 .album-section {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: 60px 20px;
 }
 
 .glass-card {
     background: var(--glass);
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.4);
     padding: 40px;
     border-radius: 30px;
     width: 100%;
-    max-width: 600px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    max-width: 550px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
     text-align: center;
 }
 
 .frase-sentimental {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 30px;
     color: #880e4f;
-    min-height: 100px;
+    min-height: 120px;
+    transition: all 0.5s ease;
 }
 
 .moldura-interativa {
     position: relative;
     width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 20px;
+    aspect-ratio: 1 / 1;
+    border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
 .moldura-interativa img {
     width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .overlay-click {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.3);
     color: white;
     display: flex;
     justify-content: center;
@@ -128,47 +186,31 @@ body {
     opacity: 0;
     transition: 0.3s;
     z-index: 2;
-    font-weight: bold;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
 .moldura-interativa:hover .overlay-click { opacity: 1; }
-.moldura-interativa:active img { transform: scale(0.95); }
-
 
 .progresso-container {
-    width: 100%; height: 6px;
+    width: 100%; height: 8px;
     background: rgba(0,0,0,0.05);
-    margin-top: 30px;
+    margin-top: 35px;
     border-radius: 10px;
-    overflow: hidden;
 }
 
 .barra {
-    height: 100%; background: var(--primary);
-    width: 0%; transition: 0.5s;
+    height: 100%; 
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    width: 0%; 
+    transition: 0.5s ease;
+    border-radius: 10px;
 }
 
-.mensagem-final {
-    height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-}
-
-.heart { font-size: 3rem; display: block; margin-top: 20px; animation: pulse 1.5s infinite; }
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-/* Seção do Texto Sentimental */
+/* --- SEÇÃO SENTIMENTAL (A CARTA) --- */
 .secao-sentimental {
-    padding: 100px 20px;
-    background: white; /* Contraste com o fundo colorido para dar foco ao texto */
+    padding: 120px 20px;
+    background: white;
     text-align: center;
 }
 
@@ -185,52 +227,50 @@ body {
 }
 
 .texto-container p {
-    font-size: 1.5rem; /* Texto grande para ser lido com calma */
+    font-size: 1.6rem;
     line-height: 1.8;
-    color: #555;
+    color: #444;
     font-weight: 300;
     margin-bottom: 50px;
 }
 
-/* Animação do Coração Centralizado */
+/* --- CORAÇÃO PULSANTE --- */
 .coracao-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .coracao-pulsante {
-    font-size: 8rem; /* Coração bem grande e central */
-    cursor: default;
-    user-select: none;
-    animation: pulsarCoracao 1.2s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(216, 27, 96, 0.4));
+    font-size: 7rem;
+    filter: drop-shadow(0 0 20px rgba(216, 27, 96, 0.3));
+    animation: batida 1.2s infinite;
 }
 
-@keyframes pulsarCoracao {
-    0% {
-        transform: scale(1);
-    }
-    15% {
-        transform: scale(1.25);
-    }
-    30% {
-        transform: scale(1);
-    }
-    45% {
-        transform: scale(1.15);
-    }
-    60% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1);
-    }
+@keyframes batida {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
 }
 
-/* Ajuste para telas pequenas */
+/* --- RODAPÉ --- */
+.mensagem-final {
+    padding: 80px 20px;
+    background: #fdf2f7;
+    text-align: center;
+}
+
+.texto-final h3 {
+    font-size: 1.8rem;
+    color: #d81b60;
+}
+
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 600px) {
+    .titulo-principal { font-size: 3.5rem; }
+    .glass-card { padding: 20px; }
+    .frase-sentimental { font-size: 1.8rem; }
     .texto-container h2 { font-size: 2.5rem; }
     .texto-container p { font-size: 1.2rem; }
     .coracao-pulsante { font-size: 5rem; }
