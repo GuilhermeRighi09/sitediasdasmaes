@@ -3,66 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para a Melhor Mãe do Mundo</title>
+    <title>Para a Mulher Mais Incrível do Mundo</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="music-control" class="music-btn">
-        <span id="music-icon">🎵</span>
-        <span class="music-text">Tocar Música</span>
+    <button id="music-btn" class="music-fab"><span id="music-icon">🎵</span></button>
+
+    <div class="bg-glow"></div>
+
+    <header class="hero">
+        <div class="hero-content fade-in">
+            <span class="pre-title">Uma homenagem ao meu primeiro amor</span>
+            <h1>Mãe, você é o meu mundo.</h1>
+            <p class="subtitle">Cada detalhe deste site foi feito para celebrar você.</p>
+            <div class="scroll-down">↓</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="secao-intro fade-in">
+            <div class="texto-central">
+                <span class="tag">Minha Inspiração</span>
+                <h2>Por que você é única?</h2>
+                <p>Mãe, sua existência é o que dá cor aos meus dias. Você não apenas me deu a vida, mas me ensinou a ter coragem, a ser bondoso e a nunca desistir dos meus sonhos. Sua força silenciosa e seu amor incondicional são os tesouros mais valiosos que eu carrego comigo.</p>
+            </div>
+        </section>
+
+        <section class="secao-album fade-in">
+            <h2 class="titulo-sessao">Nossa História em Retratos</h2>
+            <p class="instrucao">As fotos passam sozinhas, mas você pode clicar nelas para ver melhor ❤️</p>
+            <div class="slider-container">
+                <div class="slider-wrapper" id="slider">
+                    </div>
+            </div>
+            <div class="slider-caption" id="slider-caption"></div>
+        </section>
+
+        <section class="secao-elogios fade-in">
+            <div class="grid-elogios">
+                <div class="card-elogio">
+                    <span class="emoji">💎</span>
+                    <h4>Sua Resiliência</h4>
+                    <p>Admiro como você transforma dificuldades em aprendizado, sempre com um sorriso no rosto.</p>
+                </div>
+                <div class="card-elogio">
+                    <span class="emoji">☀️</span>
+                    <h4>Sua Alegria</h4>
+                    <p>Seu riso tem o poder de iluminar qualquer sala e dissipar qualquer tristeza minha.</p>
+                </div>
+                <div class="card-elogio">
+                    <span class="emoji">🛡️</span>
+                    <h4>Sua Proteção</h4>
+                    <p>Obrigado por ser meu escudo contra o mundo e por acreditar em mim quando ninguém mais acreditou.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao-carta fade-in">
+            <div class="papel-carta">
+                <h2>Obrigado por tudo, Mãe.</h2>
+                <p>Nenhuma palavra escrita nestas linhas será suficiente para descrever a gratidão que sinto por ter sido escolhido como seu filho. Você abdicou de tantos sonhos para que os meus se tornassem realidade, e isso eu nunca esquecerei.</p>
+                <p>Prometo honrar cada ensinamento seu e cuidar de você com a mesma ternura que você sempre me dedicou. Você é a mulher mais forte, elegante e generosa que eu conheço.</p>
+                <span class="assinatura">Com amor eterno, seu filho.</span>
+            </div>
+        </section>
     </div>
 
-    <div class="background-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
+    <div id="modal" class="modal" onclick="fecharModal()">
+        <div class="modal-content-wrapper">
+            <img id="img-ampliada" src="" alt="Ampliada">
+            <p id="modal-caption"></p>
+        </div>
     </div>
 
-    <section class="hero">
-        <h1 class="titulo-principal">Feliz Dia das Mães, Rainha!</h1>
-        <p class="subtitulo">Cada clique é uma memória, cada memória é um pedaço de amor.</p>
-        <a href="#album" class="btn-começar">Abrir Nosso Álbum</a>
-    </section>
-
-    <section id="album" class="album-section">
-        <div class="glass-card">
-            <h2 id="frase" class="frase-sentimental">Carregando memórias...</h2>
-            
-            <div class="moldura-interativa">
-                <div class="overlay-click">Toque para reviver</div>
-                <img id="imagem" src="" alt="Nossa Memória">
-            </div>
-            
-            <div class="progresso-container">
-                <div id="barra-progresso" class="barra"></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="secao-sentimental">
-        <div class="texto-container">
-            <h2>O que você representa para mim...</h2>
-            <p>
-                Mãe, você é o meu norte, a minha base mais sólida e o amor mais puro que eu já conheci. 
-                Representa a força que não se abala e o carinho que cura qualquer ferida. Ter você 
-                ao meu lado é ter a certeza de que nunca estarei só. Este pequeno site é apenas um 
-                pedaço do tamanho da gratidão que tenho por tudo o que você fez e continua fazendo por mim. 
-                Te amo hoje, amanhã e para todo o sempre!
-            </p>
-        </div>
-        
-        <div class="coracao-wrapper">
-            <div class="coracao-pulsante">❤️</div>
-        </div>
-    </section>
-
-    <section class="mensagem-final">
-        <div class="texto-final">
-            <h3>Obrigado por ser meu porto seguro.</h3>
-            <p>Você é a tradução mais pura do que é o amor.</p>
-        </div>
-    </section>
+    <footer class="rodape fade-in">
+        <div class="coracao-pulsante">❤️</div>
+        <h3>Para sempre, nós dois.</h3>
+        <p>Feliz Dia das Mães!</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

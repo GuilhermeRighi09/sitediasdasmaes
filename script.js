@@ -1,78 +1,74 @@
-// Configurações do Álbum
-const listaFrases = [
-    "Primeiro último dia de aula",
-    "A arte no parque Van Gogh",
-    "Mamãe 2 vezes ❤️",
-    "Primeiro niver como vovó",
-    "Formando os filhos",
-    "Mamãe Corinthiana"
+// 1. Configuração do Álbum
+const fotos = [
+    { url: 'fotos/f1.jpg', legenda: 'Você é a luz dos meus dias ✨' },
+    { url: 'fotos/f2.jpg', legenda: 'O sorriso mais lindo que conheço ❤️' },
+    { url: 'fotos/f3.jpg', legenda: 'Minha maior inspiração 💪' },
+    { url: 'fotos/f4.jpg', legenda: 'Te amo daqui até a eternidade 🌸' }
 ];
 
-const listaImagens = [
-    "fotos/f1.jpg",
-    "fotos/f2.jpg",
-    "fotos/f3.jpg",
-    "fotos/f4.jpg",
-    "fotos/f7.jpg",
-    "fotos/f8.jpg"
-];
+const slider = document.getElementById('slider');
+const sliderCaption = document.getElementById('slider-caption');
+let currentIndex = 0;
 
-let indiceAtual = 0;
-const fraseEl = document.getElementById('frase');
-const imagemEl = document.getElementById('imagem');
-const barraEl = document.getElementById('barra-progresso');
-
-// --- CONTROLE DE MÚSICA VIA JS ---
-const musica = new Audio('som.mp3');
-musica.loop = true;
-
-const musicBtn = document.getElementById('music-control');
-const musicIcon = document.getElementById('music-icon');
-const musicText = document.querySelector('.music-text');
-
-musicBtn.addEventListener('click', () => {
-    if (musica.paused) {
-        musica.play();
-        musicIcon.textContent = "⏸️";
-        musicText.textContent = "Pausar";
-        musicBtn.classList.add('tocando');
-    } else {
-        musica.pause();
-        musicIcon.textContent = "🎵";
-        musicText.textContent = "Tocar Música";
-        musicBtn.classList.remove('tocando');
-    }
+// Renderizar Slides
+fotos.forEach((foto, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'slide';
+    slide.innerHTML = `<img src="${foto.url}" onclick="abrirModal('${foto.url}', '${foto.legenda}')">`;
+    slider.appendChild(slide);
 });
 
-// --- LÓGICA DO ÁLBUM ---
-function atualizarPagina() {
-    // Efeito de transição
-    fraseEl.style.opacity = 0;
-    fraseEl.style.transform = "translateY(20px)";
-    imagemEl.style.filter = "blur(10px) brightness(0.7)";
-
+// Loop Automático
+function proximoSlide() {
+    currentIndex = (currentIndex + 1) % fotos.length;
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    sliderCaption.style.opacity = 0;
     setTimeout(() => {
-        fraseEl.textContent = listaFrases[indiceAtual];
-        imagemEl.src = listaImagens[indiceAtual];
-        
-        // Atualiza Barra de Progresso
-        const progresso = ((indiceAtual + 1) / listaFrases.length) * 100;
-        barraEl.style.width = `${progresso}%`;
-
-        // Volta os elementos
-        fraseEl.style.opacity = 1;
-        fraseEl.style.transform = "translateY(0)";
-        imagemEl.style.filter = "blur(0) brightness(1)";
+        sliderCaption.innerText = fotos[currentIndex].legenda;
+        sliderCaption.style.opacity = 1;
     }, 400);
 }
 
-function proximaFoto() {
-    indiceAtual = (indiceAtual + 1) % listaFrases.length;
-    atualizarPagina();
+setInterval(proximoSlide, 4000);
+sliderCaption.innerText = fotos[0].legenda;
+
+// 2. Lógica do Modal (Ampliação)
+const modal = document.getElementById('modal');
+const imgAmpliada = document.getElementById('img-ampliada');
+const modalCaption = document.getElementById('modal-caption');
+
+function abrirModal(src, legenda) {
+    modal.style.display = "block";
+    imgAmpliada.src = src;
+    modalCaption.innerText = legenda;
 }
 
-// Evento de clique na imagem
-document.querySelector('.moldura-interativa').addEventListener('click', proximaFoto);
+function fecharModal() {
+    modal.style.display = "none";
+}
 
-// Iniciar página
-window.onload = atualizarPagina;
+// 3. Música
+const musica = new Audio('som.mp3');
+musica.loop = true;
+const btnM = document.getElementById('music-btn');
+
+btnM.addEventListener('click', () => {
+    if (musica.paused) {
+        musica.play();
+        btnM.innerHTML = "⏸️";
+        btnM.style.background = "#ff8fa3";
+    } else {
+        musica.pause();
+        btnM.innerHTML = "🎵";
+        btnM.style.background = "#800f2f";
+    }
+});
+
+// 4. Efeito de Aparição (Scroll)
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));

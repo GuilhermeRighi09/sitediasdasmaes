@@ -1,277 +1,293 @@
-/* --- CONFIGURAÇÕES GERAIS --- */
+/* ============================================================
+   1. RESET E VARIÁVEIS (A Base de Tudo)
+   ============================================================ */
 :root {
-    --primary: #ff758c;
-    --secondary: #ff7eb3;
-    --text: #4a4a4a;
-    --glass: rgba(255, 255, 255, 0.7);
+    --fundo: #fffafb;          /* Rosa esbranquiçado muito leve */
+    --rosa-claro: #ffe5ec;     /* Detalhes e houver */
+    --rosa-principal: #ff8fa3; /* Destaques e botões */
+    --rosa-escuro: #800f2f;    /* Títulos e textos fortes */
+    --branco: #ffffff;
+    --texto: #444444;
+    --sombra-luxo: 0 20px 60px rgba(128, 15, 47, 0.1);
 }
 
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    scroll-behavior: smooth; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
+    background-color: var(--fundo);
     font-family: 'Montserrat', sans-serif;
-    color: var(--text);
-    overflow-x: hidden;
-    background-color: #fce4ec;
-}
-
-/* --- FUNDO ANIMADO (BLOBS) --- */
-.background-blobs {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.blob {
-    position: absolute;
-    width: 500px; height: 500px;
-    background: var(--secondary);
-    filter: blur(80px);
-    border-radius: 50%;
-    opacity: 0.4;
-    animation: move 20s infinite alternate;
-}
-
-.blob-2 { 
-    background: #a18cd1; 
-    right: -100px; 
-    bottom: -100px; 
-    animation-delay: -5s; 
-}
-
-@keyframes move {
-    from { transform: translate(-10%, -10%) rotate(0deg); }
-    to { transform: translate(20%, 20%) rotate(360deg); }
-}
-
-/* --- BOTÃO DE MÚSICA --- */
-.music-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    padding: 10px 20px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 1px solid rgba(255, 117, 140, 0.3);
-    transition: all 0.3s ease;
-}
-
-.music-btn:hover {
-    transform: translateY(-3px);
-    background: white;
-}
-
-.music-text {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #d81b60;
-    text-transform: uppercase;
-}
-
-.tocando {
-    animation: pulseSmall 1s infinite;
-    border-color: #ff758c;
-}
-
-@keyframes pulseSmall {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-/* --- SEÇÃO INICIAL (HERO) --- */
-.hero {
-    height: 100vh;
+    color: var(--texto);
+    line-height: 1.7;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centralização horizontal total */
+    overflow-x: hidden;
+}
+
+/* ============================================================
+   2. CABEÇALHO (HERO) - IMPACTO INICIAL
+   ============================================================ */
+.hero {
+    width: 100%;
+    height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 20px;
+    background: linear-gradient(to bottom, #ffffff, var(--fundo));
 }
 
-.titulo-principal {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(3rem, 10vw, 5.5rem);
-    color: #d81b60;
-    margin-bottom: 15px;
-}
-
-.subtitulo { 
-    font-size: 1.2rem; 
-    font-weight: 300; 
-    margin-bottom: 40px; 
-}
-
-.btn-começar {
-    padding: 18px 45px;
-    background: var(--primary);
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 700;
-    box-shadow: 0 10px 20px rgba(255, 117, 140, 0.3);
-    transition: 0.3s;
-}
-
-.btn-começar:hover { transform: scale(1.1); }
-
-/* --- ÁLBUM (GLASS CARD) --- */
-.album-section {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 20px;
-}
-
-.glass-card {
-    background: var(--glass);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.4);
-    padding: 40px;
-    border-radius: 30px;
+.hero-content {
+    max-width: 850px;
     width: 100%;
-    max-width: 550px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-    text-align: center;
 }
 
-.frase-sentimental {
+.pre-title {
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+    color: var(--rosa-principal);
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 8vw, 5.5rem); /* Fonte cresce conforme a tela */
+    color: var(--rosa-escuro);
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-weight: 300;
+    color: var(--texto);
+    opacity: 0.8;
+}
+
+/* ============================================================
+   3. CONTAINER E SEÇÕES CENTRALIZADAS
+   ============================================================ */
+.container {
+    width: 100%;
+    max-width: 1000px; /* Largura perfeita para leitura */
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    width: 100%;
+    padding: 100px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tag {
+    background: var(--rosa-escuro);
+    color: var(--branco);
+    padding: 6px 18px;
+    font-size: 0.75rem;
+    border-radius: 50px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--rosa-escuro);
+    margin-bottom: 35px;
+}
+
+/* ============================================================
+   4. ÁLBUM AUTOMÁTICO (SLIDER) 
+   ============================================================ */
+.slider-container {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--sombra-luxo);
+    background: var(--branco);
+    margin-top: 20px;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.slide {
+    min-width: 100%;
+    aspect-ratio: 4/5; /* Formato retrato elegante */
+    cursor: pointer;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.slide:hover img {
+    transform: scale(1.03);
+}
+
+.slider-caption {
+    padding: 40px 20px;
+    background: var(--branco);
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    color: var(--rosa-escuro);
+    transition: opacity 0.5s;
+}
+
+/* ============================================================
+   5. GRID DE ELOGIOS E CARTAS
+   ============================================================ */
+.grid-elogios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.card-elogio {
+    background: var(--branco);
+    padding: 50px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease;
+}
+
+.card-elogio:hover {
+    transform: translateY(-10px);
+}
+
+.emoji { font-size: 3rem; margin-bottom: 15px; display: block; }
+
+.papel-carta {
+    background: var(--branco);
+    padding: clamp(30px, 8vw, 80px);
+    border-radius: 12px;
+    box-shadow: var(--sombra-luxo);
+    width: 100%;
+    max-width: 850px;
+}
+
+.assinatura {
     font-family: 'Dancing Script', cursive;
     font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #880e4f;
-    min-height: 120px;
-    transition: all 0.5s ease;
+    color: var(--rosa-escuro);
+    display: block;
+    margin-top: 40px;
 }
 
-.moldura-interativa {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-}
-
-.moldura-interativa img {
+/* ============================================================
+   6. MODAL E INTERATIVIDADE
+   ============================================================ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
     width: 100%; height: 100%;
-    object-fit: cover;
-    transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
 }
 
-.overlay-click {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.3);
-    color: white;
+.modal-content-wrapper {
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+}
+
+.modal-content-wrapper img {
+    max-width: 90%;
+    max-height: 75vh;
+    border-radius: 15px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.2);
+}
+
+/* BOTÃO DE MÚSICA */
+.music-fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: var(--rosa-escuro);
+    border: none;
+    color: var(--branco);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 5000;
+    box-shadow: 0 10px 25px rgba(128, 15, 47, 0.3);
+    transition: all 0.3s ease;
+}
+
+.music-fab:hover { transform: scale(1.1); }
+
+/* ============================================================
+   7. ANIMAÇÕES E RODAPÉ
+   ============================================================ */
+.fade-in {
     opacity: 0;
-    transition: 0.3s;
-    z-index: 2;
-    font-weight: 700;
-    text-transform: uppercase;
+    transform: translateY(40px);
+    transition: 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.moldura-interativa:hover .overlay-click { opacity: 1; }
-
-.progresso-container {
-    width: 100%; height: 8px;
-    background: rgba(0,0,0,0.05);
-    margin-top: 35px;
-    border-radius: 10px;
+.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.barra {
-    height: 100%; 
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    width: 0%; 
-    transition: 0.5s ease;
-    border-radius: 10px;
-}
-
-/* --- SEÇÃO SENTIMENTAL (A CARTA) --- */
-.secao-sentimental {
-    padding: 120px 20px;
-    background: white;
+.rodape {
+    width: 100%;
+    padding: 100px 20px;
     text-align: center;
-}
-
-.texto-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.texto-container h2 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3.5rem;
-    color: #d81b60;
-    margin-bottom: 30px;
-}
-
-.texto-container p {
-    font-size: 1.6rem;
-    line-height: 1.8;
-    color: #444;
-    font-weight: 300;
-    margin-bottom: 50px;
-}
-
-/* --- CORAÇÃO PULSANTE --- */
-.coracao-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
+    background: var(--branco);
 }
 
 .coracao-pulsante {
-    font-size: 7rem;
-    filter: drop-shadow(0 0 20px rgba(216, 27, 96, 0.3));
-    animation: batida 1.2s infinite;
+    font-size: 4rem;
+    color: var(--rosa-principal);
+    animation: pulse 1.5s infinite;
+    margin-bottom: 20px;
 }
 
-@keyframes batida {
+@keyframes pulse {
     0%, 100% { transform: scale(1); }
-    15% { transform: scale(1.25); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.15); }
+    50% { transform: scale(1.15); }
 }
 
-/* --- RODAPÉ --- */
-.mensagem-final {
-    padding: 80px 20px;
-    background: #fdf2f7;
-    text-align: center;
-}
-
-.texto-final h3 {
-    font-size: 1.8rem;
-    color: #d81b60;
-}
-
-/* --- RESPONSIVIDADE --- */
-@media (max-width: 600px) {
-    .titulo-principal { font-size: 3.5rem; }
-    .glass-card { padding: 20px; }
-    .frase-sentimental { font-size: 1.8rem; }
-    .texto-container h2 { font-size: 2.5rem; }
-    .texto-container p { font-size: 1.2rem; }
-    .coracao-pulsante { font-size: 5rem; }
+/* ============================================================
+   8. AJUSTES PARA CELULAR (RESPONSIVIDADE)
+   ============================================================ */
+@media (max-width: 768px) {
+    section { padding: 60px 0; }
+    .hero { height: 85vh; }
+    .grid-elogios { grid-template-columns: 1fr; }
+    .slider-container { border-radius: 0; } /* Fotos ocupam a largura toda no celular */
+    .papel-carta { padding: 30px 20px; }
+    .music-fab { width: 55px; height: 55px; bottom: 20px; right: 20px; }
 }
