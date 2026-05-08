@@ -3,22 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Dia das Mães</title>
+    <title>Para a Melhor Mãe do Mundo</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="main-container">
-        <h1 id="frase"></h1>
-        
-        <div class="card" onclick="proximaFoto()">
-            <img id="imagem" src="" alt="Foto com a mamãe">
-            <p class="instrucao">Toque na foto para mudar ✨</p>
-        </div>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
     </div>
+
+    <section class="hero">
+        <h1 class="titulo-principal">Feliz Dia das Mães, Rainha!</h1>
+        <p class="subtitulo">Cada clique é uma memória, cada memória é um pedaço de amor.</p>
+        <a href="#album" class="btn-começar">Abrir Nosso Álbum</a>
+    </section>
+
+    <section id="album" class="album-section">
+        <div class="glass-card">
+            <h2 id="frase" class="frase-sentimental">Carregando memórias...</h2>
+            
+<section class="secao-sentimental">
+    <div class="texto-container">
+        <h2>O que você representa para mim...</h2>
+        <p>
+            Mãe, você é o meu norte, a minha base mais sólida e o amor mais puro que eu já conheci. 
+            Representa a força que não se abala e o carinho que cura qualquer ferida. Ter você 
+            ao meu lado é ter a certeza de que nunca estarei só. Este pequeno site é apenas um 
+            pedaço do tamanho da gratidão que tenho por tudo o que você fez e continua fazendo por mim. 
+            Te amo hoje, amanhã e para todo o sempre!
+        </p>
+    </div>
+    
+    <div class="coracao-wrapper">
+        <div class="coracao-pulsante">❤️</div>
+    </div>
+</section>
+
+
+            <div class="moldura-interativa" onclick="proximaFoto()">
+                <div class="overlay-click">Toque para reviver</div>
+                <img id="imagem" src="" alt="Nossa Memória">
+            </div>
+            
+            <div class="progresso-container">
+                <div id="barra-progresso" class="barra"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mensagem-final">
+        <div class="texto-final">
+            <h3>Obrigado por ser meu porto seguro.</h3>
+            <p>Você é a tradução mais pura do que é o amor.</p>
+            <span class="heart">❤️</span>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>

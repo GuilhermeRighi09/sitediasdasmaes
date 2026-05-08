@@ -4,8 +4,8 @@ const listaFrases = [
     "Mamãe 2 vezes ❤️",
     "Primeiro niver como vovó",
     "Formando os filhos",
-    "Mamãe Corinthiana",
-]
+    "Mamãe Corinthiana"
+];
 
 const listaImagens = [
     "fotos/f1.jpg",
@@ -13,33 +13,39 @@ const listaImagens = [
     "fotos/f3.jpg",
     "fotos/f4.jpg",
     "fotos/f7.jpg",
-    "fotos/f8.jpg",
-]
+    "fotos/f8.jpg"
+];
 
-const fraseElemento = document.getElementById('frase')
-const imagemElemento = document.getElementById('imagem')
-let indiceAtual = 0
+let indiceAtual = 0;
+const fraseEl = document.getElementById('frase');
+const imagemEl = document.getElementById('imagem');
+const barraEl = document.getElementById('barra-progresso');
 
-
-fraseElemento.textContent = listaFrases[0]
-imagemElemento.src = listaImagens[0]
-
-function proximaFoto() {
-    fraseElemento.style.opacity = 0;
-    imagemElemento.style.opacity = 0;
+function atualizarPagina() {
+  
+    fraseEl.style.opacity = 0;
+    fraseEl.style.transform = "translateY(20px)";
+    imagemEl.style.filter = "blur(10px) brightness(0.7)";
 
     setTimeout(() => {
-        indiceAtual++;
+        fraseEl.textContent = listaFrases[indiceAtual];
+        imagemEl.src = listaImagens[indiceAtual];
         
-        if (indiceAtual >= listaFrases.length) {
-            indiceAtual = 0;
-        }
+        
+        const progresso = ((indiceAtual + 1) / listaFrases.length) * 100;
+        barraEl.style.width = `${progresso}%`;
 
-        fraseElemento.textContent = listaFrases[indiceAtual];
-        imagemElemento.src = listaImagens[indiceAtual];
-
-       
-        fraseElemento.style.opacity = 1;
-        imagemElemento.style.opacity = 1;
-    }, 400); 
+        
+        fraseEl.style.opacity = 1;
+        fraseEl.style.transform = "translateY(0)";
+        imagemEl.style.filter = "blur(0) brightness(1)";
+    }, 400);
 }
+
+function proximaFoto() {
+    indiceAtual = (indiceAtual + 1) % listaFrases.length;
+    atualizarPagina();
+}
+
+
+window.onload = atualizarPagina;
